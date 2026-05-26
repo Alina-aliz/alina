@@ -1,126 +1,191 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Alina Zhu</title>
+
   <style>
+    :root {
+      --bg: #f8fafc;
+      --panel: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --shadow: rgba(15, 23, 42, 0.06);
+      --button-bg: #0f172a;
+      --button-text: #ffffff;
+    }
+
+    html[data-theme="dark"] {
+      --bg: #0b1120;
+      --panel: #111827;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --border: #243044;
+      --shadow: rgba(0, 0, 0, 0.25);
+      --button-bg: #f8fafc;
+      --button-text: #0f172a;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #f8fafc;
-      color: #0f172a;
-      line-height: 1.6;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
     }
 
-    header {
-      background: white;
-      border-bottom: 1px solid #e2e8f0;
-      position: sticky;
-      top: 0;
+    a {
+      color: inherit;
     }
 
-    nav {
-      max-width: 1000px;
-      margin: auto;
-      padding: 16px 24px;
+    .page {
+      max-width: 1050px;
+      margin: 0 auto;
+      padding: 28px 24px 40px;
+    }
+
+    .theme-row {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      justify-content: flex-end;
+      margin-bottom: 20px;
     }
 
-    nav a {
-      color: #475569;
-      text-decoration: none;
-      margin-left: 20px;
-      font-size: 14px;
+    .theme-toggle {
+      border: 1px solid var(--border);
+      background: var(--panel);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 8px 13px;
+      font-size: 13px;
+      cursor: pointer;
+      box-shadow: 0 1px 8px var(--shadow);
     }
 
-    nav a:hover {
-      color: #0f172a;
+    .hero {
+      padding: 14px 0 28px;
     }
 
-    section {
-      max-width: 1000px;
-      margin: auto;
-      padding: 56px 24px;
-    }
-
-    h1 {
-      font-size: 56px;
-      line-height: 1.05;
-      margin: 0;
-    }
-
-    h2 {
-      font-size: 32px;
-      margin-bottom: 24px;
-    }
-
-    .subtitle {
-      max-width: 720px;
-      font-size: 18px;
-      color: #475569;
-      margin-top: 24px;
-    }
-
-    .links {
-      margin-top: 28px;
-    }
-
-    .links a {
-      display: inline-block;
-      margin-right: 12px;
-      padding: 10px 16px;
-      border-radius: 10px;
-      border: 1px solid #cbd5e1;
-      background: white;
-      color: #0f172a;
-      text-decoration: none;
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--muted);
       font-size: 14px;
       font-weight: 600;
     }
 
-    .links a.primary {
-      background: #0f172a;
-      color: white;
+    h1 {
+      margin: 0;
+      font-size: clamp(42px, 7vw, 68px);
+      line-height: 0.98;
+      letter-spacing: -0.045em;
+    }
+
+    .subtitle {
+      max-width: 760px;
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.65;
+    }
+
+    section {
+      padding: 24px 0;
+    }
+
+    .section-label {
+      margin: 0 0 8px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 0 0 18px;
+      font-size: 28px;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
     }
 
     .grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
+      gap: 16px;
     }
 
     .card {
-      background: white;
-      border: 1px solid #e2e8f0;
+      min-height: 100%;
+      border: 1px solid var(--border);
+      background: var(--panel);
       border-radius: 18px;
-      padding: 24px;
-      box-shadow: 0 1px 4px rgba(15, 23, 42, 0.05);
+      padding: 20px;
+      box-shadow: 0 6px 18px var(--shadow);
     }
 
     .card h3 {
-      margin-top: 0;
-      margin-bottom: 8px;
-      font-size: 20px;
+      margin: 0 0 8px;
+      font-size: 19px;
+      line-height: 1.2;
     }
 
-    .date, .stack, .coming-soon {
-      color: #64748b;
+    .date {
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .role {
+      margin: 0;
       font-size: 14px;
+      font-weight: 700;
     }
 
     .stack {
-      margin-top: 12px;
-      font-weight: 600;
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .summary {
+      margin: 13px 0 0;
+      color: var(--muted);
+      font-size: 14px;
     }
 
     .coming-soon {
-      margin-top: 20px;
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      letter-spacing: 0.12em;
-      font-size: 11px;
+    }
+
+    .blog-card {
+      border: 1px solid var(--border);
+      background: var(--panel);
+      border-radius: 18px;
+      padding: 22px;
+      box-shadow: 0 6px 18px var(--shadow);
+    }
+
+    .blog-card h3 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    .blog-card p {
+      max-width: 760px;
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 14px;
     }
 
     .skills {
@@ -130,184 +195,249 @@
     }
 
     .skills span {
-      background: white;
-      border: 1px solid #e2e8f0;
-      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      border-radius: 999px;
       padding: 8px 12px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .contact {
+      margin-top: 24px;
+      border-top: 1px solid var(--border);
+      padding-top: 28px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .contact-item {
+      border: 1px solid var(--border);
+      background: var(--panel);
+      border-radius: 16px;
+      padding: 16px;
+    }
+
+    .contact-item p {
+      margin: 0 0 4px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .contact-item a,
+    .contact-item span {
+      color: var(--text);
       font-size: 14px;
+      text-decoration: none;
+      overflow-wrap: anywhere;
     }
 
     footer {
-      border-top: 1px solid #e2e8f0;
-      background: white;
-      padding: 24px;
-      text-align: center;
-      color: #64748b;
-      font-size: 14px;
+      padding-top: 28px;
+      color: var(--muted);
+      font-size: 13px;
     }
 
-    @media (max-width: 800px) {
-      .grid {
+    @media (max-width: 850px) {
+      .grid,
+      .contact-grid {
         grid-template-columns: 1fr;
       }
 
-      h1 {
-        font-size: 42px;
+      .page {
+        padding: 20px 18px 34px;
       }
 
-      nav {
-        align-items: flex-start;
-        gap: 12px;
+      section {
+        padding: 22px 0;
       }
     }
   </style>
 </head>
 
 <body>
-  <header>
-    <nav>
-      <strong>Alina Zhu</strong>
-      <div>
-        <a href="#experience">Experience</a>
-        <a href="#projects">Projects</a>
-        <a href="#blog">Blog</a>
-        <a href="mailto:axzhu@uwaterloo.ca">Contact</a>
-      </div>
-    </nav>
-  </header>
-
-  <section id="home">
-    <p class="date">Waterloo Engineering · Backend · Data · Automation</p>
-    <h1>Hi, I’m Alina.</h1>
-    <p class="subtitle">
-      I’m a Nanotechnology Engineering student at the University of Waterloo interested in backend systems,
-      automation, data-heavy tools, and applied machine learning.
-    </p>
-
-    <div class="links">
-      <a class="primary" href="mailto:axzhu@uwaterloo.ca">Email</a>
-      <a href="https://linkedin.com/in/alinaxzhu" target="_blank">LinkedIn</a>
-      <a href="https://github.com/Alina-aliz" target="_blank">GitHub</a>
+  <main class="page">
+    <div class="theme-row">
+      <button class="theme-toggle" onclick="toggleTheme()">Toggle light/dark</button>
     </div>
-  </section>
 
-  <section id="experience">
-    <p class="date">Experience</p>
-    <h2>Three places I’ve worked and built things.</h2>
-
-    <div class="grid">
-      <div class="card">
-        <p class="date">Jan 2026 – Apr 2026</p>
-        <h3>WorldGuide AI</h3>
-        <p><strong>Software Engineering Intern</strong></p>
-        <p class="stack">TypeScript · Hono · Drizzle ORM · Zod · REST APIs</p>
-        <p>
-          Built backend API workflows for trips, itineraries, saved items, flights, hotels, and events.
-          Worked with third-party travel providers and database schema changes for the MVP product.
-        </p>
-        <p class="coming-soon">Details coming soon</p>
-      </div>
-
-      <div class="card">
-        <p class="date">Sept 2025 – Dec 2025</p>
-        <h3>PinkByte Technologies</h3>
-        <p><strong>Software Developer Intern</strong></p>
-        <p class="stack">Python · SQL</p>
-        <p>
-          Built backend reliability tooling, including a centralized database connection layer, backup writes,
-          server-status polling, and Raspberry Pi dashboard integrations.
-        </p>
-        <p class="coming-soon">Details coming soon</p>
-      </div>
-
-      <div class="card">
-        <p class="date">Sept 2022 – Apr 2023</p>
-        <h3>Reality Labs Waterloo</h3>
-        <p><strong>Student Software Design Team</strong></p>
-        <p class="stack">Python · PyTorch · Unity</p>
-        <p>
-          Developed a PyTorch hand-pose gesture classifier and integrated model outputs into a Unity visualization pipeline.
-        </p>
-        <p class="coming-soon">Details coming soon</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="projects">
-    <p class="date">Projects</p>
-    <h2>Selected projects.</h2>
-
-    <div class="grid">
-      <div class="card">
-        <h3>IMC Prosperity Experiment Pipeline</h3>
-        <p class="stack">Python · React · SQLite · Playwright · Pandas</p>
-        <p>
-          Automated trading-strategy submissions, parsed simulation outputs into SQLite, and built a dashboard
-          for comparing runs and PnL curves.
-        </p>
-        <p class="coming-soon">Details coming soon</p>
-      </div>
-
-      <div class="card">
-        <h3>System Monitoring & Forecast Dashboard</h3>
-        <p class="stack">Python · FastAPI · React · SQL · yfinance</p>
-        <p>
-          Built API endpoints for market data retrieval, forecasting, backtesting metrics, and model evaluation utilities.
-        </p>
-        <p class="coming-soon">Details coming soon</p>
-      </div>
-
-      <div class="card">
-        <h3>Neural Network from Scratch</h3>
-        <p class="stack">Python · NumPy</p>
-        <p>
-          Implemented a multilayer perceptron with backpropagation, SGD, metric tracking, and test accuracy evaluation.
-        </p>
-        <p class="coming-soon">Details coming soon</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="blog">
-    <p class="date">Blog</p>
-    <h2>Writing.</h2>
-
-    <div class="card">
-      <h3>First post coming soon.</h3>
-      <p>
-        I’m planning to write short notes about projects, technical rabbit holes, and what I’m learning while
-        building systems and studying engineering.
+    <section class="hero">
+      <p class="eyebrow">Waterloo Engineering · Backend · Data · Automation</p>
+      <h1>Alina Zhu</h1>
+      <p class="subtitle">
+        Nanotechnology Engineering student at the University of Waterloo interested in backend systems,
+        automation, data-heavy tools, and applied machine learning.
       </p>
-      <p class="coming-soon">Blog page coming soon</p>
-    </div>
-  </section>
+    </section>
 
-  <section id="skills">
-    <p class="date">Skills</p>
-    <h2>Tools and languages.</h2>
+    <section id="experience">
+      <p class="section-label">Experience</p>
+      <h2>Places I’ve worked and built things.</h2>
 
-    <div class="skills">
-      <span>Python</span>
-      <span>TypeScript</span>
-      <span>JavaScript</span>
-      <span>Java</span>
-      <span>SQL</span>
-      <span>FastAPI</span>
-      <span>Flask</span>
-      <span>Hono</span>
-      <span>React</span>
-      <span>Drizzle ORM</span>
-      <span>Zod</span>
-      <span>PyTorch</span>
-      <span>Pandas</span>
-      <span>NumPy</span>
-      <span>SQLite</span>
-      <span>Git</span>
-    </div>
-  </section>
+      <div class="grid">
+        <article class="card">
+          <p class="date">Jan 2026 – Apr 2026</p>
+          <h3>WorldGuide AI</h3>
+          <p class="role">Software Engineering Intern</p>
+          <p class="stack">TypeScript · Hono · Drizzle ORM · Zod · REST APIs</p>
+          <p class="summary">
+            Built backend API workflows for trips, itineraries, saved items, flights, hotels, and events.
+            Worked with third-party travel providers and database schema changes for the MVP product.
+          </p>
+          <p class="coming-soon">Details coming soon</p>
+        </article>
 
-  <footer>
-    © 2026 Alina Zhu
-  </footer>
+        <article class="card">
+          <p class="date">Sept 2025 – Dec 2025</p>
+          <h3>PinkByte Technologies</h3>
+          <p class="role">Software Developer Intern</p>
+          <p class="stack">Python · SQL</p>
+          <p class="summary">
+            Built backend reliability tooling, including a centralized database connection layer, backup writes,
+            server-status polling, and Raspberry Pi dashboard integrations.
+          </p>
+          <p class="coming-soon">Details coming soon</p>
+        </article>
+
+        <article class="card">
+          <p class="date">Sept 2022 – Apr 2023</p>
+          <h3>Reality Labs Waterloo</h3>
+          <p class="role">Student Software Design Team</p>
+          <p class="stack">Python · PyTorch · Unity</p>
+          <p class="summary">
+            Developed a PyTorch hand-pose gesture classifier and integrated model outputs into a Unity visualization pipeline.
+          </p>
+          <p class="coming-soon">Details coming soon</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="projects">
+      <p class="section-label">Projects</p>
+      <h2>Selected projects.</h2>
+
+      <div class="grid">
+        <article class="card">
+          <h3>IMC Prosperity Experiment Pipeline</h3>
+          <p class="stack">Python · React · SQLite · Playwright · Pandas</p>
+          <p class="summary">
+            Automated trading-strategy submissions, parsed simulation outputs into SQLite, and built a dashboard
+            for comparing runs and PnL curves.
+          </p>
+          <p class="coming-soon">Details coming soon</p>
+        </article>
+
+        <article class="card">
+          <h3>System Monitoring & Forecast Dashboard</h3>
+          <p class="stack">Python · FastAPI · React · SQL · yfinance</p>
+          <p class="summary">
+            Built API endpoints for market data retrieval, forecasting, backtesting metrics, and model evaluation utilities.
+          </p>
+          <p class="coming-soon">Details coming soon</p>
+        </article>
+
+        <article class="card">
+          <h3>Neural Network from Scratch</h3>
+          <p class="stack">Python · NumPy</p>
+          <p class="summary">
+            Implemented a multilayer perceptron with backpropagation, SGD, metric tracking, and test accuracy evaluation.
+          </p>
+          <p class="coming-soon">Details coming soon</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="blog">
+      <p class="section-label">Blog</p>
+      <h2>Writing.</h2>
+
+      <div class="blog-card">
+        <h3>First post coming soon.</h3>
+        <p>
+          I’m planning to write short notes about projects, technical rabbit holes, and what I’m learning while
+          building systems and studying engineering.
+        </p>
+        <p class="coming-soon">Blog page coming soon</p>
+      </div>
+    </section>
+
+    <section id="skills">
+      <p class="section-label">Skills</p>
+      <h2>Tools and languages.</h2>
+
+      <div class="skills">
+        <span>Python</span>
+        <span>TypeScript</span>
+        <span>JavaScript</span>
+        <span>Java</span>
+        <span>SQL</span>
+        <span>FastAPI</span>
+        <span>Flask</span>
+        <span>Hono</span>
+        <span>React</span>
+        <span>Drizzle ORM</span>
+        <span>Zod</span>
+        <span>PyTorch</span>
+        <span>Pandas</span>
+        <span>NumPy</span>
+        <span>SQLite</span>
+        <span>Git</span>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <p class="section-label">Contact</p>
+      <h2>Contact info.</h2>
+
+      <div class="contact-grid">
+        <div class="contact-item">
+          <p>Email</p>
+          <a href="mailto:axzhu@uwaterloo.ca">axzhu@uwaterloo.ca</a>
+        </div>
+
+        <div class="contact-item">
+          <p>LinkedIn</p>
+          <a href="https://linkedin.com/in/alinaxzhu" target="_blank">linkedin.com/in/alinaxzhu</a>
+        </div>
+
+        <div class="contact-item">
+          <p>GitHub</p>
+          <a href="https://github.com/Alina-aliz" target="_blank">github.com/Alina-aliz</a>
+        </div>
+
+        <div class="contact-item">
+          <p>Location</p>
+          <span>Waterloo, Canada</span>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © 2026 Alina Zhu
+    </footer>
+  </main>
+
+  <script>
+    function toggleTheme() {
+      const html = document.documentElement;
+      const currentTheme = html.getAttribute("data-theme");
+      const nextTheme = currentTheme === "dark" ? "light" : "dark";
+      html.setAttribute("data-theme", nextTheme);
+      localStorage.setItem("theme", nextTheme);
+    }
+
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) {
+      document.documentElement.setAttribute("data-theme", savedTheme);
+    }
+  </script>
 </body>
 </html>
