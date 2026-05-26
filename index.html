@@ -57,14 +57,67 @@
     }
 
     .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 46px;
+      height: 46px;
       border: 1px solid var(--border);
       background: var(--panel);
       color: var(--text);
       border-radius: 999px;
-      padding: 8px 13px;
-      font-size: 13px;
+      padding: 0;
       cursor: pointer;
       box-shadow: 0 1px 8px var(--shadow);
+      transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+    }
+
+    .theme-toggle:hover {
+      transform: translateY(-1px);
+    }
+
+    .theme-toggle:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    .theme-toggle svg {
+      width: 22px;
+      height: 22px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .theme-toggle .sun-core,
+    .theme-toggle .sun-rays,
+    .theme-toggle .moon-cut {
+      transition: opacity 180ms ease, transform 220ms ease;
+      transform-origin: center;
+    }
+
+    html[data-theme="dark"] .theme-toggle .sun-core,
+    html[data-theme="dark"] .theme-toggle .sun-rays {
+      opacity: 0;
+      transform: scale(0.65);
+    }
+
+    html[data-theme="dark"] .theme-toggle .moon-cut {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    html:not([data-theme="dark"]) .theme-toggle .sun-core,
+    html:not([data-theme="dark"]) .theme-toggle .sun-rays {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    html:not([data-theme="dark"]) .theme-toggle .moon-cut {
+      opacity: 0;
+      transform: translateX(5px);
     }
 
     .hero {
@@ -106,6 +159,18 @@
       text-transform: uppercase;
     }
 
+    .section-label-internships {
+      color: #7dd3fc;
+    }
+
+    .section-label-projects {
+      color: #fca5a5;
+    }
+
+    .section-label-writing {
+      color: #86efac;
+    }
+
     h2 {
       margin: 0 0 18px;
       font-size: 28px;
@@ -126,6 +191,57 @@
       border-radius: 18px;
       padding: 20px;
       box-shadow: 0 6px 18px var(--shadow);
+    }
+
+    .card-static {
+      opacity: 0.94;
+      box-shadow: 0 4px 12px var(--shadow);
+    }
+
+    .card-link,
+    .blog-card-link {
+      display: block;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .card-link:focus-visible,
+    .blog-card-link:focus-visible {
+      outline: 2px solid #7dd3fc;
+      outline-offset: 4px;
+      border-radius: 20px;
+    }
+
+    .card-interactive,
+    .blog-card-interactive {
+      position: relative;
+      overflow: hidden;
+      border-color: color-mix(in srgb, var(--border) 55%, var(--text) 45%);
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+    }
+
+    .card-interactive::after,
+    .blog-card-interactive::after {
+      content: "Open";
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      border: 1px solid color-mix(in srgb, var(--border) 50%, var(--text) 50%);
+      background: color-mix(in srgb, var(--panel) 82%, var(--text) 18%);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 4px 9px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .card-link:hover .card-interactive,
+    .blog-card-link:hover .blog-card-interactive {
+      transform: translateY(-3px);
+      border-color: color-mix(in srgb, var(--border) 30%, var(--text) 70%);
+      box-shadow: 0 14px 30px var(--shadow);
     }
 
     .card h3 {
@@ -266,24 +382,41 @@
 <body>
   <main class="page">
     <div class="theme-row">
-      <button class="theme-toggle" onclick="toggleTheme()">Toggle light/dark</button>
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle light and dark mode" title="Toggle theme">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle class="sun-core" cx="12" cy="12" r="4"></circle>
+          <g class="sun-rays">
+            <path d="M12 2.5v2.5"></path>
+            <path d="M12 19v2.5"></path>
+            <path d="M2.5 12H5"></path>
+            <path d="M19 12h2.5"></path>
+            <path d="M5.3 5.3l1.8 1.8"></path>
+            <path d="M16.9 16.9l1.8 1.8"></path>
+            <path d="M18.7 5.3l-1.8 1.8"></path>
+            <path d="M7.1 16.9l-1.8 1.8"></path>
+          </g>
+          <path class="moon-cut" d="M15.5 4.5a7.5 7.5 0 1 0 0 15a8.5 8.5 0 0 1 0-15Z"></path>
+        </svg>
+      </button>
     </div>
 
     <section class="hero">
       <p class="eyebrow">Waterloo Engineering · Backend · Data · Automation</p>
       <h1>Alina Zhu</h1>
       <p class="subtitle">
-        Nanotechnology Engineering student at the University of Waterloo interested in backend systems,
-        automation, data-heavy tools, and applied machine learning.
+        <p class="subtitle">
+          Software-focused engineering student interested in backend systems, automation, applied machine learning,
+          and mathematical problem solving. Currently studying Nanotechnology Engineering at the University of Waterloo.
+        </p>
       </p>
     </section>
 
     <section id="experience">
-      <p class="section-label">Experience</p>
+      <p class="section-label section-label-internships">Internships</p>
       <h2>Places I’ve worked and built things.</h2>
 
       <div class="grid">
-        <article class="card">
+        <article class="card card-static">
           <p class="date">Jan 2026 – Apr 2026</p>
           <h3>WorldGuide AI</h3>
           <p class="role">Software Engineering Intern</p>
@@ -292,10 +425,10 @@
             Built backend API workflows for trips, itineraries, saved items, flights, hotels, and events.
             Worked with third-party travel providers and database schema changes for the MVP product.
           </p>
-          <p class="coming-soon">Details coming soon</p>
+          
         </article>
 
-        <article class="card">
+        <article class="card card-static">
           <p class="date">Sept 2025 – Dec 2025</p>
           <h3>PinkByte Technologies</h3>
           <p class="role">Software Developer Intern</p>
@@ -304,10 +437,10 @@
             Built backend reliability tooling, including a centralized database connection layer, backup writes,
             server-status polling, and Raspberry Pi dashboard integrations.
           </p>
-          <p class="coming-soon">Details coming soon</p>
+          
         </article>
 
-        <article class="card">
+        <article class="card card-static">
           <p class="date">Sept 2022 – Apr 2023</p>
           <h3>Reality Labs Waterloo</h3>
           <p class="role">Student Software Design Team</p>
@@ -315,58 +448,66 @@
           <p class="summary">
             Developed a PyTorch hand-pose gesture classifier and integrated model outputs into a Unity visualization pipeline.
           </p>
-          <p class="coming-soon">Details coming soon</p>
+          
         </article>
       </div>
     </section>
 
     <section id="projects">
-      <p class="section-label">Projects</p>
+      <p class="section-label section-label-projects">Projects</p>
       <h2>Selected projects.</h2>
 
       <div class="grid">
-        <article class="card">
-          <h3>IMC Prosperity Experiment Pipeline</h3>
-          <p class="stack">Python · React · SQLite · Playwright · Pandas</p>
-          <p class="summary">
-            Automated trading-strategy submissions, parsed simulation outputs into SQLite, and built a dashboard
-            for comparing runs and PnL curves.
-          </p>
-          <p class="coming-soon">Details coming soon</p>
-        </article>
+        <a class="card-link" href="projects/imc-prosperity-experiment-pipeline.html">
+          <article class="card card-interactive">
+            <h3>IMC Prosperity Experiment Pipeline</h3>
+            <p class="stack">Python · React · SQLite · Playwright · Pandas</p>
+            <p class="summary">
+              Automated trading-strategy submissions, parsed simulation outputs into SQLite, and built a dashboard
+              for comparing runs and PnL curves.
+            </p>
+            <p class="coming-soon">Open project page</p>
+          </article>
+        </a>
 
-        <article class="card">
-          <h3>System Monitoring & Forecast Dashboard</h3>
-          <p class="stack">Python · FastAPI · React · SQL · yfinance</p>
-          <p class="summary">
-            Built API endpoints for market data retrieval, forecasting, backtesting metrics, and model evaluation utilities.
-          </p>
-          <p class="coming-soon">Details coming soon</p>
-        </article>
+        <a class="card-link" href="">
+          <article class="card card-interactive">
+            <h3>System Monitoring & Forecast Dashboard</h3>
+            <p class="stack">Python · FastAPI · React · SQL · yfinance</p>
+            <p class="summary">
+              Built API endpoints for market data retrieval, forecasting, backtesting metrics, and model evaluation utilities.
+            </p>
+            <p class="coming-soon">Project write up coming soon</p>
+          </article>
+        </a>
 
-        <article class="card">
-          <h3>Neural Network from Scratch</h3>
-          <p class="stack">Python · NumPy</p>
-          <p class="summary">
-            Implemented a multilayer perceptron with backpropagation, SGD, metric tracking, and test accuracy evaluation.
-          </p>
-          <p class="coming-soon">Details coming soon</p>
-        </article>
+        <a class="card-link" href="">
+          <article class="card card-interactive">
+            <h3>Neural Network from Scratch</h3>
+            <p class="stack">Python · NumPy</p>
+            <p class="summary">
+              Implemented a multilayer perceptron with backpropagation, SGD, metric tracking, and test accuracy evaluation.
+            </p>
+            <p class="coming-soon">Project write up coming soon</p>
+          </article>
+        </a>
       </div>
     </section>
 
     <section id="blog">
-      <p class="section-label">Blog</p>
+      <p class="section-label section-label-writing">Writing</p>
       <h2>Writing.</h2>
 
-      <div class="blog-card">
-        <h3>First post coming soon.</h3>
-        <p>
-          I’m planning to write short notes about projects, technical rabbit holes, and what I’m learning while
-          building systems and studying engineering.
-        </p>
-        <p class="coming-soon">Blog page coming soon</p>
-      </div>
+      <a class="blog-card-link" href="">
+        <div class="blog-card blog-card-interactive">
+          <h3>First post coming soon.</h3>
+          <p>
+            I’m planning to write short notes about projects, technical rabbit holes, and what I’m learning while
+            building systems and studying engineering.
+          </p>
+          <p class="coming-soon"></p>
+        </div>
+      </a>
     </section>
 
     <section id="skills">
