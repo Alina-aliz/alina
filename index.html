@@ -1,16 +1,313 @@
 <!DOCTYPE html>
 <html lang="en">
-<head> 
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Cpmpatible" content="IE=edge">
-    <meta name="veiwport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Alina Zhu</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alina Zhu</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f8fafc;
+      color: #0f172a;
+      line-height: 1.6;
+    }
+
+    header {
+      background: white;
+      border-bottom: 1px solid #e2e8f0;
+      position: sticky;
+      top: 0;
+    }
+
+    nav {
+      max-width: 1000px;
+      margin: auto;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav a {
+      color: #475569;
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      color: #0f172a;
+    }
+
+    section {
+      max-width: 1000px;
+      margin: auto;
+      padding: 56px 24px;
+    }
+
+    h1 {
+      font-size: 56px;
+      line-height: 1.05;
+      margin: 0;
+    }
+
+    h2 {
+      font-size: 32px;
+      margin-bottom: 24px;
+    }
+
+    .subtitle {
+      max-width: 720px;
+      font-size: 18px;
+      color: #475569;
+      margin-top: 24px;
+    }
+
+    .links {
+      margin-top: 28px;
+    }
+
+    .links a {
+      display: inline-block;
+      margin-right: 12px;
+      padding: 10px 16px;
+      border-radius: 10px;
+      border: 1px solid #cbd5e1;
+      background: white;
+      color: #0f172a;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .links a.primary {
+      background: #0f172a;
+      color: white;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: 0 1px 4px rgba(15, 23, 42, 0.05);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 8px;
+      font-size: 20px;
+    }
+
+    .date, .stack, .coming-soon {
+      color: #64748b;
+      font-size: 14px;
+    }
+
+    .stack {
+      margin-top: 12px;
+      font-weight: 600;
+    }
+
+    .coming-soon {
+      margin-top: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 11px;
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .skills span {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 8px 12px;
+      font-size: 14px;
+    }
+
+    footer {
+      border-top: 1px solid #e2e8f0;
+      background: white;
+      padding: 24px;
+      text-align: center;
+      color: #64748b;
+      font-size: 14px;
+    }
+
+    @media (max-width: 800px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 42px;
+      }
+
+      nav {
+        align-items: flex-start;
+        gap: 12px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <div> 
-        <h1>About me</h1>
-        <p>Hello this is my website</p>
+  <header>
+    <nav>
+      <strong>Alina Zhu</strong>
+      <div>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#blog">Blog</a>
+        <a href="mailto:axzhu@uwaterloo.ca">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <section id="home">
+    <p class="date">Waterloo Engineering · Backend · Data · Automation</p>
+    <h1>Hi, I’m Alina.</h1>
+    <p class="subtitle">
+      I’m a Nanotechnology Engineering student at the University of Waterloo interested in backend systems,
+      automation, data-heavy tools, and applied machine learning.
+    </p>
+
+    <div class="links">
+      <a class="primary" href="mailto:axzhu@uwaterloo.ca">Email</a>
+      <a href="https://linkedin.com/in/alinaxzhu" target="_blank">LinkedIn</a>
+      <a href="https://github.com/Alina-aliz" target="_blank">GitHub</a>
     </div>
+  </section>
+
+  <section id="experience">
+    <p class="date">Experience</p>
+    <h2>Three places I’ve worked and built things.</h2>
+
+    <div class="grid">
+      <div class="card">
+        <p class="date">Jan 2026 – Apr 2026</p>
+        <h3>WorldGuide AI</h3>
+        <p><strong>Software Engineering Intern</strong></p>
+        <p class="stack">TypeScript · Hono · Drizzle ORM · Zod · REST APIs</p>
+        <p>
+          Built backend API workflows for trips, itineraries, saved items, flights, hotels, and events.
+          Worked with third-party travel providers and database schema changes for the MVP product.
+        </p>
+        <p class="coming-soon">Details coming soon</p>
+      </div>
+
+      <div class="card">
+        <p class="date">Sept 2025 – Dec 2025</p>
+        <h3>PinkByte Technologies</h3>
+        <p><strong>Software Developer Intern</strong></p>
+        <p class="stack">Python · SQL</p>
+        <p>
+          Built backend reliability tooling, including a centralized database connection layer, backup writes,
+          server-status polling, and Raspberry Pi dashboard integrations.
+        </p>
+        <p class="coming-soon">Details coming soon</p>
+      </div>
+
+      <div class="card">
+        <p class="date">Sept 2022 – Apr 2023</p>
+        <h3>Reality Labs Waterloo</h3>
+        <p><strong>Student Software Design Team</strong></p>
+        <p class="stack">Python · PyTorch · Unity</p>
+        <p>
+          Developed a PyTorch hand-pose gesture classifier and integrated model outputs into a Unity visualization pipeline.
+        </p>
+        <p class="coming-soon">Details coming soon</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <p class="date">Projects</p>
+    <h2>Selected projects.</h2>
+
+    <div class="grid">
+      <div class="card">
+        <h3>IMC Prosperity Experiment Pipeline</h3>
+        <p class="stack">Python · React · SQLite · Playwright · Pandas</p>
+        <p>
+          Automated trading-strategy submissions, parsed simulation outputs into SQLite, and built a dashboard
+          for comparing runs and PnL curves.
+        </p>
+        <p class="coming-soon">Details coming soon</p>
+      </div>
+
+      <div class="card">
+        <h3>System Monitoring & Forecast Dashboard</h3>
+        <p class="stack">Python · FastAPI · React · SQL · yfinance</p>
+        <p>
+          Built API endpoints for market data retrieval, forecasting, backtesting metrics, and model evaluation utilities.
+        </p>
+        <p class="coming-soon">Details coming soon</p>
+      </div>
+
+      <div class="card">
+        <h3>Neural Network from Scratch</h3>
+        <p class="stack">Python · NumPy</p>
+        <p>
+          Implemented a multilayer perceptron with backpropagation, SGD, metric tracking, and test accuracy evaluation.
+        </p>
+        <p class="coming-soon">Details coming soon</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="blog">
+    <p class="date">Blog</p>
+    <h2>Writing.</h2>
+
+    <div class="card">
+      <h3>First post coming soon.</h3>
+      <p>
+        I’m planning to write short notes about projects, technical rabbit holes, and what I’m learning while
+        building systems and studying engineering.
+      </p>
+      <p class="coming-soon">Blog page coming soon</p>
+    </div>
+  </section>
+
+  <section id="skills">
+    <p class="date">Skills</p>
+    <h2>Tools and languages.</h2>
+
+    <div class="skills">
+      <span>Python</span>
+      <span>TypeScript</span>
+      <span>JavaScript</span>
+      <span>Java</span>
+      <span>SQL</span>
+      <span>FastAPI</span>
+      <span>Flask</span>
+      <span>Hono</span>
+      <span>React</span>
+      <span>Drizzle ORM</span>
+      <span>Zod</span>
+      <span>PyTorch</span>
+      <span>Pandas</span>
+      <span>NumPy</span>
+      <span>SQLite</span>
+      <span>Git</span>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 Alina Zhu
+  </footer>
 </body>
 </html>
